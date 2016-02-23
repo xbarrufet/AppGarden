@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class ClientServiceAppConfig {
 	
 	public  void main(String[] args) {
+			//start application
 	        SpringApplication.run(ClientServiceAppConfig.class, args);
 	    }
 	}

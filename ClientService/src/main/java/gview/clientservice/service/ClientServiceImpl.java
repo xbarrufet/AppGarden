@@ -26,19 +26,20 @@ public class ClientServiceImpl implements ClientService{
 	
 	
 
-	public void activateClient(String email, String name) throws ClientServiceException {
+	public ClientDTO activateClient(String email, String name) throws ClientServiceException {
 		Client client=repository.findByEmail(email);
 		if(client==null) {
 			throw new ClientServiceException(Constants.EX_CLIENT_NOT_EXIST);
 		}
 		client.activateClient(name);
 		repository.save(client);
+		return this.getClient(email);
 		
 	}
 
 	
 
-	public void addClient(ClientContractDTO clientContractDTO) throws ClientServiceException {
+	public ClientDTO addClientContract(ClientContractDTO clientContractDTO) throws ClientServiceException {
 		Client client=repository.findByEmail(clientContractDTO.getEmail());
 		if(client==null) {
 			client = Client.getBuilder()
@@ -51,6 +52,7 @@ public class ClientServiceImpl implements ClientService{
 						   clientContractDTO.getDayOfWeek(),
 						   clientContractDTO.getTasks());
 		repository.save(client);
+		return this.getClient(clientContractDTO.getEmail());
 		
 	}
 
@@ -58,7 +60,7 @@ public class ClientServiceImpl implements ClientService{
 
 
 
-	public void updateContract(ClientContractDTO clientContractDTO) throws ClientServiceException {
+	public ClientDTO updateClientContract(ClientContractDTO clientContractDTO) throws ClientServiceException {
 		Client client=repository.findByEmail(clientContractDTO.getEmail());
 		if(client==null) {
 			throw new ClientServiceException(Constants.EX_CLIENT_NOT_EXIST);
@@ -69,6 +71,7 @@ public class ClientServiceImpl implements ClientService{
 						   clientContractDTO.getDayOfWeek(),
 						   clientContractDTO.getTasks());
 		repository.save(client);
+		return this.getClient(clientContractDTO.getEmail());
 		
 	}
 
