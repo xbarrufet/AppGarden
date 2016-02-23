@@ -5,14 +5,17 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+
+
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
 public class ClientServiceAppConfig {
-	
-	public  void main(String[] args) {
-			//start application
-	        SpringApplication.run(ClientServiceAppConfig.class, args);
-	    }
-	}
 
+	public void main(String[] args) {
+		//start application
+        SpringApplication.run(ClientServiceAppConfig.class, args);
+    }
+
+
+}
