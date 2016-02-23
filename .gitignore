@@ -1,7 +1,7 @@
 .metadata
-bin/
-tmp/
-ClientService/target/
+**/bin/
+**/tmp/
+**/target/
 *.tmp
 *.bak
 *.swp
@@ -13,23 +13,9 @@ local.properties
 # Eclipse Core
 .project
 
-# External tool builders
-.externalToolBuilders/
-
-# Locally stored "Eclipse launch configurations"
-*.launch
-
-# PyDev specific (Python IDE for Eclipse)
-*.pydevproject
-
-# CDT-specific (C/C++ Development Tooling)
-.cproject
 
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
-
-# Java annotation processor (APT)
-.factorypath
 
 # PDT-specific (PHP Development Tools)
 .buildpath
@@ -37,17 +23,8 @@ local.properties
 # sbteclipse plugin
 .target
 
-# Tern plugin
-.tern-project
-
-# TeXlipse plugin
-.texlipse
-
-# STS (Spring Tool Suite)
-.springBeans
-
 # Code Recommenders
 .recommenders/
 
 # java classess
-*.class
+**/*.class
