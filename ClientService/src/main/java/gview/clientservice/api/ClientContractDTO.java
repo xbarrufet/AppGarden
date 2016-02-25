@@ -1,5 +1,6 @@
 package gview.clientservice.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClientContractDTO {
@@ -12,8 +13,13 @@ public class ClientContractDTO {
 	private int dayOfWeek;
 	private List<String> tasks;
 	
+	private Builder builder;
 	public ClientContractDTO() {
 		
+	}
+	
+	public Builder getBuilder() {
+		return this.builder;
 	}
 	
 	public String getEmail() {
@@ -66,5 +72,46 @@ public class ClientContractDTO {
 		this.tasks = tasks;
 	}
 	
+	class Builder {
+		private String email;
+		private String gardenId;
+		private String contractId;
+		private String gardenName;
+		private String location;
+		private int dayOfWeek;
+		private List<String> tasks;
+		
+		Builder email(String email) {
+			this.email=email;
+			return this;
+		}
+		Builder contractId(String contractId) {
+			this.contractId=contractId;
+			return this;
+		}
+		Builder gardenId(String gardenId) {
+			this.gardenId=gardenId;
+			return this;
+		}
+		Builder gardenName(String gardenName) {
+			this.gardenName=gardenName;
+			return this;
+		}
+		Builder location(String location) {
+			this.location=location;
+			return this;
+		}
+		Builder dayOfWeek(int email) {
+			this.dayOfWeek=dayOfWeek;
+			return this;
+		}
+		
+		Builder tasks(List<String> tasks) {
+			this.tasks=tasks;
+			return this;
+		}
+		
+		
+	}
 	
 }
