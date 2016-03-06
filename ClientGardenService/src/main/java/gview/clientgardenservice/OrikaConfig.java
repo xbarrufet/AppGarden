@@ -19,7 +19,7 @@ public class OrikaConfig {
         mapperFactory.classMap(GardenDTO.class, Garden.class)
                 .byDefault()
                 .register();
-        mapperFactory.classMap(GardenDTO.class, Garden.class)
+        mapperFactory.classMap(Garden.class, GardenDTO.class)
 		        .exclude("id")
 		        .byDefault()
 		        .register();
