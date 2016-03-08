@@ -1,11 +1,9 @@
-package gview.gardenservice.model;
+package gview.gardenservice.api;
 
-import org.springframework.data.annotation.Id;
+import gview.gardenservice.model.Garden;
+import gview.gardenservice.model.Garden.Builder;
 
-public class Garden {
-
-	@Id
-	private String gardenId;
+public class GardenDTO {
 	private String gardenCenterId;
 	private String clientId;
 	private String type;
@@ -13,16 +11,14 @@ public class Garden {
 	private String city;
 	private int[] daysOfWeek;
 	private String[] services;
-	private boolean active;
+
 	
-	public final static String OPEN_CONTRACT = "OPEN_CONTRACT"; 
-	public final static String TASKS_CONTRACT = "TASKS_CONTRACT";
 	
-	public Garden() {
-		this.active=true;
+	public GardenDTO() {
+		
 	}
 	
-	public Garden(Builder builder) {
+	public GardenDTO(Builder builder) {
 	}
 	
 	public static Builder getBuilder() {
@@ -31,12 +27,7 @@ public class Garden {
 	
 	
 	
-	public String getGardenId() {
-		return gardenId;
-	}
-	public void setGardenId(String gardenId) {
-		this.gardenId = gardenId;
-	}
+	
 	public String getGardenCenterId() {
 		return gardenCenterId;
 	}
@@ -83,27 +74,15 @@ public class Garden {
 	
 	
 	
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-
-
-
-
 	public static class Builder{
 		
 		Builder(){
 			
 		}
 		
-		public Garden build() {
-			Garden build = new Garden(this);
+		GardenDTO build() {
+			GardenDTO build = new GardenDTO(this);
 			return build;
 		}
 		}
 }
-	
