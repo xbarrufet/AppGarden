@@ -9,9 +9,7 @@ public class GardenDTO {
 	private String type;
 	private String address;
 	private String city;
-	private int[] daysOfWeek;
-	private String[] services;
-
+	private ServicesDTO services;
 	
 	
 	public GardenDTO() {
@@ -28,6 +26,14 @@ public class GardenDTO {
 	
 	
 	
+	public ServicesDTO getServices() {
+		return services;
+	}
+
+	public void setServices(ServicesDTO services) {
+		this.services = services;
+	}
+
 	public String getGardenCenterId() {
 		return gardenCenterId;
 	}
@@ -58,20 +64,7 @@ public class GardenDTO {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public int[] getDaysOfWeek() {
-		return daysOfWeek;
-	}
-	public void setDaysOfWeek(int[] daysOfWeek) {
-		this.daysOfWeek = daysOfWeek;
-	}
-	public String[] getServices() {
-		return services;
-	}
-	public void setServices(String[] services) {
-		this.services = services;
-	}
-	
-	
+
 	
 	
 	public static class Builder{

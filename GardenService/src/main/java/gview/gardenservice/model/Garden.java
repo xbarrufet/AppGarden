@@ -1,5 +1,7 @@
 package gview.gardenservice.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 
 public class Garden {
@@ -11,9 +13,10 @@ public class Garden {
 	private String type;
 	private String address;
 	private String city;
-	private int[] daysOfWeek;
-	private String[] services;
+	private List<Services> services;
 	private boolean active;
+	
+	
 	
 	public final static String OPEN_CONTRACT = "OPEN_CONTRACT"; 
 	public final static String TASKS_CONTRACT = "TASKS_CONTRACT";
@@ -67,22 +70,17 @@ public class Garden {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public int[] getDaysOfWeek() {
-		return daysOfWeek;
-	}
-	public void setDaysOfWeek(int[] daysOfWeek) {
-		this.daysOfWeek = daysOfWeek;
-	}
-	public String[] getServices() {
+
+	
+	
+	public List<Services> getServices() {
 		return services;
 	}
-	public void setServices(String[] services) {
+
+	public void setServices(List<Services> services) {
 		this.services = services;
 	}
-	
-	
-	
-	
+
 	public boolean isActive() {
 		return active;
 	}
@@ -90,6 +88,8 @@ public class Garden {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	
+	
 
 
 
