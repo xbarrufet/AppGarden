@@ -15,7 +15,6 @@ public class Garden {
 	private String address;
 	private String city;
 	private boolean active;
-	private Builder builder;
 	
 	
 	//needed for spring-boot  mongodb repository (public or protected)
