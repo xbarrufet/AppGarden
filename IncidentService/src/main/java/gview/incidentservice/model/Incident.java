@@ -1,22 +1,33 @@
 package gview.incidentservice.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 
-public class Incidence {
+public class Incident {
 
 	
 	@Id
 	private String incidenceId;
+	@Indexed
 	private String gardenId;
 	private String description;
 	private String status;
 	
-	public Incidence() {
-		
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	public final static String STATUS_PENDING="PENDING";
+	public final static String STATUS_COMPLETED="COMPLETED";
+	
+	public Incident() {
+	
 	}
 	
 	
-	public Incidence(Builder builder) {
+	public Incident(Builder builder) {
 		
 	}
 	
@@ -62,17 +73,10 @@ public class Incidence {
 	}
 
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-
-
-
 	public static class Builder {
 		
-		public Incidence build() {
-			return new Incidence(this);
+		public Incident build() {
+			return new Incident(this);
 		}
 		
 	}
