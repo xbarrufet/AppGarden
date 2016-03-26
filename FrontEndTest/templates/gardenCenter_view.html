@@ -1,0 +1,40 @@
+
+<!-- Static navbar -->
+      
+     
+     <div class="row">
+    <button ng-click="newGardenCenter()" class="btn btn-default">New</button>
+  
+</div>
+    </div>
+    <table class="table table-striped table-hover table-users">
+    			<thead>
+    				<tr>
+    					
+    					<th class="hidden-phone">Garden Center</th>
+    					<th class="hidden-phone">Email</th>
+    					<th class="hidden-phone">Address</th>
+    					<th class="hidden-phone">City</th>
+    					<th>Estado</th>
+    					<th></th>
+    					<th></th>
+    				</tr>
+    			</thead>
+				
+    			<tbody>
+    			    <tr ng-repeat="gardenCenter in gardenCenters">
+	    			    <td class="hidden-phone">{{gardenCenter.name}}</td>
+	    					<td>{{gardenCenter.email}}</td>
+	    					<td>{{gardenCenter.address}}</td>
+	    					<td class="hidden-phone">{{gardenCenter.city}}</td>	                    
+	                     <td><span class="label" ng-class="gardenCenter.active?'label-default':'label-warning'">
+	                     		{{gardenCenter.active?'Active':'No Active'}}
+	                     	 </span>
+	                    </td>
+	                     <td> <button type="button" ng-click="editGardenCenter(gardenCenter.gardenCenterId)" class="btn btn-primary btn-xs">Edit</button></td>
+	    				<td><button type="button" class="btn btn-danger btn-xs">Delete</button></td>	   					  					
+	    				</tr>
+                
+	               </tbody>
+
+    		</table>

@@ -1,0 +1,11 @@
+
+<div>
+	<div ng-repeat="alert in alerts" class="alert {{alert.type}}">
+	     <button type="button" class="close" ng-click="alert.close()" data-dismiss="alert" aria-label="Close">
+    		<span aria-hidden="true">&times;</span>
+  		</button>
+        <div>{{alert.msg}}</div>
+    </div>
+  <!--  <alert ng-repeat="alert in alerts" type="alert.type" close="alert.close()">{{ alert.msg }}</alert>	
+   -->
+</div>
