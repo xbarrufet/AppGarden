@@ -1,8 +1,8 @@
-package java.gview.clientservice;
+package gview.clientservice;
 
 
-import java.gview.clientservice.api.ClientDTO;
-import java.gview.clientservice.model.Client;
+import gview.clientservice.api.ClientDTO;
+import gview.clientservice.model.Client;
 
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
@@ -22,7 +22,6 @@ public class OrikaConfig {
                 .byDefault()
                 .register();
         mapperFactory.classMap(Client.class, ClientDTO.class)
-        		.exclude("active")
 		        .byDefault()
 		        .register();
     }

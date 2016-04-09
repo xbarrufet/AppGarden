@@ -1,8 +1,8 @@
-package java.gview.clientservice.service;
+package gview.clientservice.service;
 
-import java.gview.clientservice.ClientServiceException;
-import java.gview.clientservice.model.Client;
-import java.gview.clientservice.repository.ClientRepository;
+import gview.clientservice.ClientServiceException;
+import gview.clientservice.model.Client;
+import gview.clientservice.repository.ClientRepository;
 import java.util.List;
 
 import org.springframework.stereotype.Service;

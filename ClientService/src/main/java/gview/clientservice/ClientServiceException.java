@@ -1,4 +1,4 @@
-package java.gview.clientservice;
+package gview.clientservice;
 
 public class ClientServiceException extends Exception {
 

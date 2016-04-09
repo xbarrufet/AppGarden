@@ -1,4 +1,4 @@
-package java.gview.clientservice;
+package gview.clientservice;
 
 import org.springframework.boot.SpringApplication;
 

@@ -1,6 +1,6 @@
-package java.gview.clientservice.repository;
+package gview.clientservice.repository;
 
-import java.gview.clientservice.model.Client;
+import gview.clientservice.model.Client;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;

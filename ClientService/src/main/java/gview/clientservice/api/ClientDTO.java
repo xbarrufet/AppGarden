@@ -1,30 +1,25 @@
-package java.gview.clientservice.model;
-
-import org.springframework.data.annotation.Id;
+package gview.clientservice.api;
 
 
 
-public class Client {
+public class ClientDTO {
 
-	@Id
+	
 	private String clientId;
-	private String gardenCenterId;
 	private String name;
 	private String address;
 	private String city;
 	private String email;
 	private String phone;
-	private boolean active;
 	
-	
-	public Client(){
-		this.active=true;
+	public ClientDTO(){
+		
 	}
 	
-	public Client(Builder builder){
-		this.active=true;
+	public ClientDTO(Builder builder){
+		
+		
 		this.clientId=builder.clientId;
-		this.gardenCenterId=builder.gardenCenterId;
 		this.name=builder.name;
 		this.address=builder.address;
 		this.city=builder.city;
@@ -32,19 +27,10 @@ public class Client {
 		this.phone=builder.phone;
 	}
 	
-	public String getClientId() {
-		return clientId;
-	}
-	public void setClientId(String clientId) {
-		this.clientId = clientId;
-	}
 	
-	public String getGardenCenterId() {
-		return gardenCenterId;
-	}
-	public void setGardenCenterId(String gardenCenterId) {
-		this.gardenCenterId = gardenCenterId;
-	}
+	
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -75,19 +61,14 @@ public class Client {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public boolean isActive() {
-		return active;
-	}
-	public void setActive(boolean active) {
-		this.active = active;
-	}
+	
 	
 	public static Builder getBuilder() {
 		return new Builder();
 	}
 	
 	public static class Builder {
-   	 
+	   	 
 		private String clientId;
 		private String gardenCenterId;
 		private String name;
@@ -124,13 +105,10 @@ public class Client {
             return this;
         }
  
-        public Client build()  {
-        	Client build = new Client(this);
+        public ClientDTO build()  {
+        	ClientDTO build = new ClientDTO(this);
         		
             return build;
         }
-    }
-	
-	
-	
+	}
 }

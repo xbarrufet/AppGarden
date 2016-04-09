@@ -1,7 +1,7 @@
-package java.gview.clientservice.service;
+package gview.clientservice.service;
 
-import java.gview.clientservice.ClientServiceException;
-import java.gview.clientservice.model.Client;
+import gview.clientservice.ClientServiceException;
+import gview.clientservice.model.Client;
 import java.util.List;
 
 public interface ClientService {
