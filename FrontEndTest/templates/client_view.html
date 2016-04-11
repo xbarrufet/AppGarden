@@ -1,0 +1,40 @@
+
+<!-- Static navbar -->
+      
+     
+     <div class="row">
+    <button ng-click="newClient()" class="btn btn-default">New</button>
+  
+</div>
+    </div>
+    <table class="table table-striped table-hover table-users">
+    			<thead>
+    				<tr>
+    					
+    					<th class="hidden-phone">Client Name</th>
+    					<th class="hidden-phone">Email</th>
+    					<th class="hidden-phone">Address</th>
+    					<th class="hidden-phone">City</th>
+    					<th>Estado</th>
+    					<th></th>
+    					<th></th>
+    				</tr>
+    			</thead>
+				
+    			<tbody>
+    			    <tr ng-repeat="client in clients">
+	    			    <td class="hidden-phone">{{client.name}}</td>
+	    					<td>{{client.email}}</td>
+	    					<td>{{client.address}}</td>
+	    					<td class="hidden-phone">{{client.city}}</td>	                    
+	                     <td><span class="label" ng-class="gardenCenter.active?'label-default':'label-warning'">
+	                     		{{client.active?'Active':'No Active'}}
+	                     	 </span>
+	                    </td>
+	                     <td> <button type="button" ng-click="editClient(client.clientId)" class="btn btn-primary btn-xs">Edit</button></td>
+	    				<td><button type="button" class="btn btn-danger btn-xs">Delete</button></td>	   					  					
+	    				</tr>
+                
+	               </tbody>
+
+    		</table>

@@ -72,9 +72,9 @@ public class ClientRestController {
 			}
 	    }
 		
-		@RequestMapping(method=RequestMethod.GET)
+		@RequestMapping(value = "/{clientId}", method=RequestMethod.GET)
 	    public ClientDTO getClient(@RequestHeader("GView-Context") String gviewContext,
-	    						  @RequestParam(value="clientId", defaultValue="") String clientId) {
+	    						  @PathVariable String clientId) {
 	        Client client;
 			try {
 				client = clientService.getClient(clientId);

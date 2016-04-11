@@ -5,6 +5,7 @@ import gview.clientservice.model.Client;
 import gview.clientservice.repository.ClientRepository;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientServiceImpl implements ClientService {
 	
+	@Autowired
 	private ClientRepository repository;
 	
 	public Client addClient(Client client) throws ClientServiceException {

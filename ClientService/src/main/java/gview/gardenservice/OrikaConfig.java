@@ -1,8 +1,10 @@
-package gview.gardencenterservice;
+package gview.gardenservice;
 
 
-import gview.gardencenterservice.api.GardenCenterDTO;
-import gview.gardencenterservice.model.GardenCenter;
+
+
+import gview.gardenservice.api.GardenDTO;
+import gview.gardenservice.model.Garden;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
@@ -17,10 +19,11 @@ public class OrikaConfig {
         //ConverterFactory converterFactory = mapperFactory.getConverterFactory();
         //converterFactory.registerConverter(new LocalDateTimeToLocalDateConverter());
 
-        mapperFactory.classMap(GardenCenterDTO.class, GardenCenter.class)
+        mapperFactory.classMap(GardenDTO.class, Garden.class)
                 .byDefault()
                 .register();
-        mapperFactory.classMap(GardenCenter.class, GardenCenterDTO.class)
+        mapperFactory.classMap(Garden.class, GardenDTO.class)
+        		.exclude("active")
 		        .byDefault()
 		        .register();
     }

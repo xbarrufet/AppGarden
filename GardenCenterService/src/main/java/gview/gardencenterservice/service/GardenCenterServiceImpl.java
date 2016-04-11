@@ -1,5 +1,8 @@
 package gview.gardencenterservice.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import gview.gardencenterservice.GardenCenterServiceException;
@@ -9,6 +12,7 @@ import gview.gardencenterservice.repository.GardenCenterRepository;
 @Service
 public class GardenCenterServiceImpl implements GardenCenterService {
 	
+	@Autowired
 	private GardenCenterRepository repository;
 	
 	public GardenCenter addGardenCenter(GardenCenter gardenCenter) throws GardenCenterServiceException {
@@ -27,8 +31,8 @@ public class GardenCenterServiceImpl implements GardenCenterService {
 		return result;
 	}
 
-	public GardenCenter deleteGardenCenter(String gardenId) throws GardenCenterServiceException {
-		GardenCenter current = repository.findOne(gardenId);
+	public GardenCenter deleteGardenCenter(String gardenCenterId) throws GardenCenterServiceException {
+		GardenCenter current = repository.findOne(gardenCenterId);
 		if(current ==null)
 			throw new GardenCenterServiceException("Garden center doesn't exist");
 		current.setActive(false);
@@ -36,8 +40,12 @@ public class GardenCenterServiceImpl implements GardenCenterService {
 		return result;
 	}
 
-	public GardenCenter getGardenCenter(String gardenId) throws GardenCenterServiceException {
-		return repository.findOne(gardenId);
+	public GardenCenter getGardenCenter(String gardenCenterId) throws GardenCenterServiceException {
+		return repository.findOne(gardenCenterId);
+	}
+
+	public List<GardenCenter> getAllGardenCenters(boolean onlyActive) throws GardenCenterServiceException {
+		return repository.findAll();
 	}
 
 }

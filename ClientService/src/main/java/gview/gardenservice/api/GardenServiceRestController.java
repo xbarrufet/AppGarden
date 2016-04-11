@@ -4,6 +4,7 @@ package gview.gardenservice.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +17,9 @@ import gview.gardenservice.model.Garden;
 import gview.gardenservice.service.GardenService;
 import ma.glasnost.orika.MapperFacade;
 
+
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/v1/garden")
 public class GardenServiceRestController {
 

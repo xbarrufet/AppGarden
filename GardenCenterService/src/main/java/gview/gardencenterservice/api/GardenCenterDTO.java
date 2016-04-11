@@ -11,6 +11,8 @@ public class GardenCenterDTO {
 	private String city;
 	private String email;
 	private String phone;
+	private boolean active;
+	
 	
 	public GardenCenterDTO(){
 		
@@ -24,6 +26,7 @@ public class GardenCenterDTO {
 		this.city=builder.city;
 		this.email=builder.email;
 		this.phone=builder.phone;
+		this.active=true;
 	}
 	
 	
@@ -67,6 +70,16 @@ public class GardenCenterDTO {
 	}
 	
 	
+	
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	public static Builder getBuilder() {
 		return new Builder();
 	}
@@ -79,6 +92,7 @@ public class GardenCenterDTO {
 		private String city;
 		private String email;
 		private String phone;
+		
 		
         private Builder() {}
  

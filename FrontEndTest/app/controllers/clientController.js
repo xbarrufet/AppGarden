@@ -1,22 +1,24 @@
-app.controller('GardenCenterController', 
-		['$scope','$location','gardenCenterFactory',
-		 function ($scope,$location, gardenCenterFactory) {
+app.controller('clientController', 
+		['$rootScope','$scope','$location','clientFactory',
+		 function ($rootScope,$scope,$location, clientFactory) {
 	
-	
-	//getGardenCenters();
-			
-	$scope.newGardenCenter=function() {
-		$location.path( '/gardenCenterEdit' );		 
+	console.log("clientController start");
+	$rootScope.gardenCenterId="56f4cdcb9248d758b10eb8e2"
+		
+	getClients($rootScope.gardenCenterId);	
+	$scope.newClient=function() {
+		$location.path( '/clientEdit' );		 
 	}
 	
-	$scope.editGardenCenter = function editGardenCenter(gardenCenterId) {
-		$location.path( '/gardenCenterEdit/'+ gardenCenterId);
+	$scope.editClient = function editClient(clientId) {
+		$location.path( '/clientEdit/'+ clientId);
 	}
 	
-	function getGardenCenters() {
-		gardenCenterFactory.getGardenCenters()
+	function getClients(gardenCenterId) {
+		clientFactory.getClients(gardenCenterId)
             .then(function (response) {
-                $scope.gardenCenters = response.data;
+            	console.log(response.data);
+                $scope.clients = response.data;
             }, function (error) {
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });

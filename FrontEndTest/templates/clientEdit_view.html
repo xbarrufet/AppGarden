@@ -1,0 +1,19 @@
+ <form role="form">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" ng-model="currentClient.name" class="form-control" id="name" placeholder="Enter Client Name" />
+         </div>
+      <div class="form-group">
+        <label for="address">Adress:</label>
+        <input type="text"  ng-model="currentClient.address" class="form-control" id="address" placeholder="Enter Client Address" />
+        <label for="city">City:</label>
+        <input type="text" ng-model="currentClient.city" class="form-control" id="city" placeholder="Enter Client City" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" ng-model="currentClient.email" class="form-control" id="email" placeholder="Email" />
+         <label for="phone">Phone:</label>
+        <input type="text" ng-model="currentClient.phone" class="form-control" id="phone" placeholder="Phone Number" />
+      </div>
+      <button type="submit" ng-click="saveClient()" class="btn btn-default">Submit</button>
+    </form>

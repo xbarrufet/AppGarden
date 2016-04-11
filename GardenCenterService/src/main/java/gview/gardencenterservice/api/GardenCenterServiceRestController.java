@@ -3,6 +3,8 @@ package gview.gardencenterservice.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +18,7 @@ import gview.gardencenterservice.service.GardenCenterService;
 import ma.glasnost.orika.MapperFacade;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/v1/gardencenters")
 public class GardenCenterServiceRestController {
 
@@ -45,8 +48,8 @@ public class GardenCenterServiceRestController {
 			}
 	    }
 		
-		@RequestMapping(method = RequestMethod.PUT)
-	    public GardenCenterDTO updateGarden(@RequestBody  GardenCenterDTO gardenCenterDTO) {
+		@RequestMapping(value = "/{gardenCenterId}",method = RequestMethod.PUT)
+	    public GardenCenterDTO updateGarden(@PathVariable String gardenCenterId,@RequestBody  GardenCenterDTO gardenCenterDTO) {
 	        try {
 	        	GardenCenter gardenCenter = GardenCenter.getBuilder().build();
 	        	mapper.map(gardenCenterDTO, gardenCenter);
@@ -61,9 +64,24 @@ public class GardenCenterServiceRestController {
 			}
 	    }
 		
-		
 		@RequestMapping(method=RequestMethod.GET)
-	    public GardenCenterDTO getClient(@RequestParam(value="email", defaultValue="") String gardenCenterId) {
+	    public List<GardenCenterDTO> getAllGardenCenters() {
+	       
+			try {
+				 List<GardenCenter> gardenCenters = gardenCenterService.getAllGardenCenters(false);
+				 List<GardenCenterDTO> result = mapper.mapAsList(gardenCenters, GardenCenterDTO.class);
+				return result;
+			} catch (GardenCenterServiceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+	      
+	    }
+		
+		
+		@RequestMapping(value = "/{gardenCenterId}", method=RequestMethod.GET)
+	    public GardenCenterDTO getClient(@PathVariable String gardenCenterId) {
 	        GardenCenter gardenCenter;
 			try {
 				gardenCenter = gardenCenterService.getGardenCenter(gardenCenterId);

@@ -11,9 +11,10 @@ public class ClientDTO {
 	private String city;
 	private String email;
 	private String phone;
+	private boolean	active;
 	
 	public ClientDTO(){
-		
+		this.active=true;
 	}
 	
 	public ClientDTO(Builder builder){
@@ -25,12 +26,18 @@ public class ClientDTO {
 		this.city=builder.city;
 		this.email=builder.email;
 		this.phone=builder.phone;
+		this.active=builder.active;
 	}
 	
 	
-	
-	
-	
+	public String getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -63,6 +70,16 @@ public class ClientDTO {
 	}
 	
 	
+	
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	public static Builder getBuilder() {
 		return new Builder();
 	}
@@ -70,12 +87,12 @@ public class ClientDTO {
 	public static class Builder {
 	   	 
 		private String clientId;
-		private String gardenCenterId;
 		private String name;
 		private String address;
 		private String city;
 		private String email;
 		private String phone;
+		private boolean	active;
 		
         private Builder() {}
  
@@ -87,10 +104,7 @@ public class ClientDTO {
             this.clientId = clientId;
             return this;
         }
-        public Builder gardenCenterId(String gardenCenterId) {
-            this.gardenCenterId = gardenCenterId;
-            return this;
-        }
+       
         public Builder address(String address) {
             this.address = address;
             return this;
@@ -105,6 +119,11 @@ public class ClientDTO {
             return this;
         }
  
+        public Builder active(boolean active) {
+            this.active = active;
+            return this;
+        } 
+        
         public ClientDTO build()  {
         	ClientDTO build = new ClientDTO(this);
         		
