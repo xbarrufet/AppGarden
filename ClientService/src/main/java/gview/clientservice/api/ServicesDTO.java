@@ -1,22 +1,20 @@
-package gview.gardenservice.model;
+package gview.clientservice.api;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Services {
-
-	
+public class ServicesDTO {
 	private int dayOfWeek;
-	private List<Service> services;
+	private List<ServiceDTO> services;
 	
 	
 	
-	public Services() {
-		this.services=new ArrayList<Service>();
+	public ServicesDTO() {
+		services=new ArrayList<ServiceDTO>();
 	}
 	
-	public Services(Builder builder) {
-		this.services=new ArrayList<Service>();
+	public ServicesDTO(Builder builder) {
+		services=new ArrayList<ServiceDTO>();
 	}
 
 	public int getDayOfWeek() {
@@ -27,11 +25,11 @@ public class Services {
 		this.dayOfWeek = dayOfWeek;
 	}
 
-	public List<Service> getServices() {
+	public List<ServiceDTO> getServices() {
 		return services;
 	}
 
-	public void setServices(List<Service> services) {
+	public void setServices(List<ServiceDTO> services) {
 		this.services = services;
 	}
 	
@@ -39,14 +37,13 @@ public class Services {
 	public static class Builder {
 		
 		private int dayOfWeek;
-		private List<Service> services;
-		
+		private List<ServiceDTO> services;
 		
 		public Builder() {
 		}
 		
-		public Services build() {
-			return new Services(this);
+		public ServicesDTO build() {
+			return new ServicesDTO(this);
 		}
 		
 		public Builder dayOfweek(int dayOfWeek) {
@@ -54,7 +51,7 @@ public class Services {
 			return this;
 		}
 		
-		public Builder services(List<Service> services) {
+		public Builder services(List<ServiceDTO> services) {
 			this.services=services;
 			return this;
 		}

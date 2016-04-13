@@ -1,22 +1,31 @@
-package gview.gardenservice.api;
+package gview.clientservice.model;
 
-import gview.gardenservice.model.Garden;
-import gview.gardenservice.model.Garden.Builder;
+import java.util.List;
 
-public class GardenDTO {
+import org.springframework.data.annotation.Id;
+
+public class Garden {
+
+	@Id
+	private String gardenId;
 	private String gardenCenterId;
 	private String clientId;
 	private String type;
 	private String address;
 	private String city;
-	private ServicesDTO services;
+	private List<Services> services;
+	private boolean active;
 	
 	
-	public GardenDTO() {
-		
+	
+	public final static String OPEN_CONTRACT = "OPEN_CONTRACT"; 
+	public final static String TASKS_CONTRACT = "TASKS_CONTRACT";
+	
+	public Garden() {
+		this.active=true;
 	}
 	
-	public GardenDTO(Builder builder) {
+	public Garden(Builder builder) {
 	}
 	
 	public static Builder getBuilder() {
@@ -25,15 +34,12 @@ public class GardenDTO {
 	
 	
 	
-	
-	public ServicesDTO getServices() {
-		return services;
+	public String getGardenId() {
+		return gardenId;
 	}
-
-	public void setServices(ServicesDTO services) {
-		this.services = services;
+	public void setGardenId(String gardenId) {
+		this.gardenId = gardenId;
 	}
-
 	public String getGardenCenterId() {
 		return gardenCenterId;
 	}
@@ -67,15 +73,37 @@ public class GardenDTO {
 
 	
 	
+	public List<Services> getServices() {
+		return services;
+	}
+
+	public void setServices(List<Services> services) {
+		this.services = services;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
+	
+
+
+
+
 	public static class Builder{
 		
 		Builder(){
 			
 		}
 		
-		GardenDTO build() {
-			GardenDTO build = new GardenDTO(this);
+		public Garden build() {
+			Garden build = new Garden(this);
 			return build;
 		}
 		}
 }
+	

@@ -1,7 +1,7 @@
-package gview.gardenservice.api;
+package gview.clientservice.api;
 
-import gview.gardenservice.model.Service;
-import gview.gardenservice.model.Service.Builder;
+import gview.clientservice.model.Service;
+import gview.clientservice.model.Service.Builder;
 
 public class ServiceDTO {
 

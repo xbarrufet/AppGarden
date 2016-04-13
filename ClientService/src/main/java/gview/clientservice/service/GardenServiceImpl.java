@@ -1,13 +1,13 @@
-package gview.gardenservice.service;
+package gview.clientservice.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import gview.gardenservice.GardenServiceException;
-import gview.gardenservice.model.Garden;
-import gview.gardenservice.repository.GardenRepository;
+import gview.clientservice.GardenServiceException;
+import gview.clientservice.model.Garden;
+import gview.clientservice.repository.GardenRepository;
 
 @Service
 public class GardenServiceImpl implements GardenService {

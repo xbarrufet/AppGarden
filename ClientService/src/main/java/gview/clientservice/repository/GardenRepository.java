@@ -1,11 +1,11 @@
-package gview.gardenservice.repository;
+package gview.clientservice.repository;
 
 
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import gview.gardenservice.model.Garden;
+import gview.clientservice.model.Garden;
 
 public interface GardenRepository extends MongoRepository<Garden, String> {
 

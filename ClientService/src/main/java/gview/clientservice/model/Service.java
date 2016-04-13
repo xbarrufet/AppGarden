@@ -1,4 +1,4 @@
-package gview.gardenservice.model;
+package gview.clientservice.model;
 
 public class Service {
 

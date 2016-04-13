@@ -1,20 +1,22 @@
-package gview.gardenservice.api;
+package gview.clientservice.api;
 
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import gview.gardenservice.GardenServiceException;
-import gview.gardenservice.OrikaConfig;
-import gview.gardenservice.model.Garden;
-import gview.gardenservice.service.GardenService;
+import gview.clientservice.GardenServiceException;
+import gview.clientservice.OrikaConfig;
+import gview.clientservice.model.Garden;
+import gview.clientservice.service.GardenService;
 import ma.glasnost.orika.MapperFacade;
 
 
@@ -32,11 +34,15 @@ public class GardenServiceRestController {
 				mapper = OrikaConfig.getMapperFacade();
 			}
 			
-			@RequestMapping(method = RequestMethod.POST)
-		    public GardenDTO addGarden(@RequestBody  GardenDTO gardenDTO)   {
+			@RequestMapping(value = "/{clientId}",
+							method = RequestMethod.POST)
+		    public GardenDTO addGarden(@RequestHeader("GView-Context") String gviewContext, 
+					  				   @PathVariable String clientId,
+					  				   @RequestBody  GardenDTO gardenDTO)   {
 		        try {
 		        	Garden garden = Garden.getBuilder().build();
 		        	mapper.map(gardenDTO, garden);
+		        	garden.setClientId(clientId);
 		        	garden = gardenService.addGarden(garden);
 		        	GardenDTO result = GardenDTO.getBuilder().build();
 					mapper.map(garden, result);

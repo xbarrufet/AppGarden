@@ -1,9 +1,9 @@
-package gview.gardenservice.service;
+package gview.clientservice.service;
 
 import java.util.List;
 
-import gview.gardenservice.GardenServiceException;
-import gview.gardenservice.model.Garden;
+import gview.clientservice.GardenServiceException;
+import gview.clientservice.model.Garden;
 
 public interface GardenService {
 
