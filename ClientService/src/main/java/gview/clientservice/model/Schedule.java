@@ -3,7 +3,7 @@ package gview.clientservice.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Services {
+public class Schedule {
 
 	
 	private int dayOfWeek;
@@ -11,11 +11,11 @@ public class Services {
 	
 	
 	
-	public Services() {
+	public Schedule() {
 		this.services=new ArrayList<Service>();
 	}
 	
-	public Services(Builder builder) {
+	public Schedule(Builder builder) {
 		this.services=new ArrayList<Service>();
 	}
 
@@ -45,8 +45,8 @@ public class Services {
 		public Builder() {
 		}
 		
-		public Services build() {
-			return new Services(this);
+		public Schedule build() {
+			return new Schedule(this);
 		}
 		
 		public Builder dayOfweek(int dayOfWeek) {

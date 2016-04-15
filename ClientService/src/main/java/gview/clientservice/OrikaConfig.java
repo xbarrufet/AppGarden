@@ -4,11 +4,11 @@ package gview.clientservice;
 import gview.clientservice.api.ClientDTO;
 import gview.clientservice.api.GardenDTO;
 import gview.clientservice.api.ServiceDTO;
-import gview.clientservice.api.ServicesDTO;
+import gview.clientservice.api.ScheduleDTO;
 import gview.clientservice.model.Client;
 import gview.clientservice.model.Garden;
 import gview.clientservice.model.Service;
-import gview.clientservice.model.Services;
+import gview.clientservice.model.Schedule;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
@@ -36,16 +36,19 @@ public class OrikaConfig {
 		mapperFactory.classMap(Garden.class, GardenDTO.class)
 		        .byDefault()
 		        .register();
+		
+		
 		mapperFactory.classMap(Service.class, ServiceDTO.class)
 		        .byDefault()
 		        .register();
 		mapperFactory.classMap(ServiceDTO.class, Service.class)
 		        .byDefault()
 		        .register();
-		mapperFactory.classMap(Services.class, ServicesDTO.class)
+		
+		mapperFactory.classMap(Schedule.class, ScheduleDTO.class)
 					.byDefault()
 		        .register();
-		mapperFactory.classMap(ServicesDTO.class, Services.class)
+		mapperFactory.classMap(ScheduleDTO.class, Schedule.class)
 		        .byDefault()
 		        .register();
     }

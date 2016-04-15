@@ -3,17 +3,17 @@ package gview.clientservice.api;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServicesDTO {
+public class ScheduleDTO {
 	private int dayOfWeek;
 	private List<ServiceDTO> services;
 	
 	
 	
-	public ServicesDTO() {
+	public ScheduleDTO() {
 		services=new ArrayList<ServiceDTO>();
 	}
 	
-	public ServicesDTO(Builder builder) {
+	public ScheduleDTO(Builder builder) {
 		services=new ArrayList<ServiceDTO>();
 	}
 
@@ -42,8 +42,8 @@ public class ServicesDTO {
 		public Builder() {
 		}
 		
-		public ServicesDTO build() {
-			return new ServicesDTO(this);
+		public ScheduleDTO build() {
+			return new ScheduleDTO(this);
 		}
 		
 		public Builder dayOfweek(int dayOfWeek) {

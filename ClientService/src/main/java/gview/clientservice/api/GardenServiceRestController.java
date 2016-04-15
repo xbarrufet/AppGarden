@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import gview.clientservice.ContextBuilder;
 import gview.clientservice.GardenServiceException;
 import gview.clientservice.OrikaConfig;
 import gview.clientservice.model.Garden;
@@ -34,8 +35,7 @@ public class GardenServiceRestController {
 				mapper = OrikaConfig.getMapperFacade();
 			}
 			
-			@RequestMapping(value = "/{clientId}",
-							method = RequestMethod.POST)
+			@RequestMapping(value = "/{clientId}", method = RequestMethod.POST)
 		    public GardenDTO addGarden(@RequestHeader("GView-Context") String gviewContext, 
 					  				   @PathVariable String clientId,
 					  				   @RequestBody  GardenDTO gardenDTO)   {
@@ -48,14 +48,16 @@ public class GardenServiceRestController {
 					mapper.map(garden, result);
 					return result;
 				} catch (GardenServiceException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					return null;
 				}
 		    }
 			
-			@RequestMapping(method = RequestMethod.PUT)
-		    public GardenDTO updateGarden(@RequestBody  GardenDTO gardenDTO) {
+			@RequestMapping(value = "/{clientId}/{gardenId}",method = RequestMethod.PUT)
+		    public GardenDTO updateGarden(@RequestHeader("GView-Context") String gviewContext,
+		    							 @PathVariable String clientId,
+	   				                     @PathVariable String gardenId,
+		    							 @RequestBody  GardenDTO gardenDTO) {
 				 try {
 			        	Garden garden = Garden.getBuilder().build();
 			        	mapper.map(gardenDTO, garden);
@@ -70,8 +72,10 @@ public class GardenServiceRestController {
 					}
 		    }
 			
-			@RequestMapping(method=RequestMethod.GET)
-		    public GardenDTO getGarden(@RequestParam(value="gardenId", defaultValue="") String gardenId) {
+			@RequestMapping(value = "/{clientId}/{gardenId}",method=RequestMethod.GET)
+		    public GardenDTO getGarden(@RequestHeader("GView-Context") String gviewContext, 
+		    		 				  @PathVariable String clientId,
+	  				   				  @PathVariable String gardenId) {
 		        Garden garden;
 				try {
 					garden = gardenService.getGarden(gardenId);
@@ -86,11 +90,12 @@ public class GardenServiceRestController {
 		      
 		    }
 			
-			@RequestMapping(method=RequestMethod.GET)
-		    public List<GardenDTO> getGardenClients(@RequestParam(value="gardenCenterId", defaultValue="") String gardenCenterId,
-		    										@RequestParam(value="clientId", defaultValue="") String clientId) {
+			@RequestMapping(value = "/{clientId}",method=RequestMethod.GET)
+		    public List<GardenDTO> getGardenClients(@RequestHeader("GView-Context") String gviewContext, 
+	 				  								@PathVariable String clientId) {
 		       
 				try {
+					String gardenCenterId = ContextBuilder.getGardenCenterId(gviewContext);
 					List<Garden> gardens = gardenService .getGardenByClient(clientId, gardenCenterId);
 					List<GardenDTO> result = mapper.mapAsList(gardens, GardenDTO.class);
 					return result;

@@ -1,5 +1,7 @@
 package gview.gardenservice.api;
 
+import java.util.List;
+
 import gview.gardenservice.model.Garden;
 import gview.gardenservice.model.Garden.Builder;
 
@@ -9,7 +11,7 @@ public class GardenDTO {
 	private String type;
 	private String address;
 	private String city;
-	private ServicesDTO services;
+	private List<ServicesDTO> scheduledServices;
 	
 	
 	public GardenDTO() {
@@ -26,12 +28,12 @@ public class GardenDTO {
 	
 	
 	
-	public ServicesDTO getServices() {
-		return services;
+	public List<ServicesDTO> getScheduledServices() {
+		return this.scheduledServices;
 	}
 
-	public void setServices(ServicesDTO services) {
-		this.services = services;
+	public void setScheduledServices(List<ServicesDTO> scheduledServices) {
+		this.scheduledServices = scheduledServices;
 	}
 
 	public String getGardenCenterId() {

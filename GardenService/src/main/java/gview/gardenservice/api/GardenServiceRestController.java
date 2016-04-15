@@ -33,6 +33,8 @@ public class GardenServiceRestController {
 		    public GardenDTO addGarden(@RequestBody  GardenDTO gardenDTO)   {
 		        try {
 		        	Garden garden = Garden.getBuilder().build();
+		        	List aux =gardenDTO.getScheduledServices();
+		        	
 		        	mapper.map(gardenDTO, garden);
 		        	garden = gardenService.addGarden(garden);
 		        	GardenDTO result = GardenDTO.getBuilder().build();

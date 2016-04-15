@@ -13,7 +13,7 @@ public class Garden {
 	private String type;
 	private String address;
 	private String city;
-	private List<Services> services;
+	private List<Services> scheduledServices;
 	private boolean active;
 	
 	
@@ -73,12 +73,12 @@ public class Garden {
 
 	
 	
-	public List<Services> getServices() {
-		return services;
+	public List<Services> getScheduledServices() {
+		return scheduledServices;
 	}
 
-	public void setServices(List<Services> services) {
-		this.services = services;
+	public void setScheduledServices(List<Services> scheduledServices) {
+		this.scheduledServices = scheduledServices;
 	}
 
 	public boolean isActive() {
