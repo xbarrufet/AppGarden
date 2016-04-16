@@ -4,31 +4,33 @@ var visitRepository =require('../3-repository/visitRepository');
 
 var visitService = function() {
 
-  
-    var _getGardenVisits = function(gardenId,limit) {
+    
+    var _getGardenVisitsShortList = function(gardenId) {
         var deferred = Q.defer();
-        winston.info('_getGardenVisits access');
-        _model.find({'gardenId':gardenId},function(err,docs) {
-            if(err) {
-                var deferred = Q.defer();
-            }
-           deferred.resolve (docs) 
-        }).limit(10);
+        winston.info('_getGardenVisitsShortList service access');
+        visitRepository.getGardenVisitsShortList(gardenId)
+            .then(function (data) {
+               deferred.resolve(data)
+             })
+            .fail(function error(err) {
+                console.error(err);
+                deferred.reject(err);
+                
+        });
+        return deferred.promise;
     };
     
-      var _newPOI = function(req,res) {
-       
-    };
     var _addVisit = function(visit) {
-         winston.info('new visit);
+         winston.info('new visit');
          var deferred = Q.defer();              
         _model.create(visit,
             function (err, vVisit) {
             if (err)
-                var deferred = Q.defer();
+              deferred.reject(err)
              // get and return the element
             deferred.resolve (vVisit) 
         });
+        return deferred.promise;
     };
 
     return {

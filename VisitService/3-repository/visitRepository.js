@@ -23,34 +23,36 @@ var visitRepository = function() {
 
     var _model = mongoose.model('visits', _visitSchema);
 
-    var _getGardenVisits = function(gardenId,limit) {
+    var _getGardenVisitsShortList = function(gardenId) {
         var deferred = Q.defer();
         winston.info('_getGardenVisits access');
         _model.find({'gardenId':gardenId},function(err,docs) {
             if(err) {
-                var deferred = Q.defer();
+               deferred.reject(err);
             }
            deferred.resolve (docs) 
         }).limit(10);
+        return deferred.promise;
     };
     
       var _newPOI = function(req,res) {
        
     };
     var _addVisit = function(visit) {
-         winston.info('new visit);
+         winston.info('new visit');
          var deferred = Q.defer();              
         _model.create(visit,
             function (err, vVisit) {
             if (err)
-                var deferred = Q.defer();
+                deferred.reject(err);
              // get and return the element
-            deferred.resolve (vVisit) 
+            deferred.resolve (vVisit);
         });
+        return deferred.promise;
     };
 
     return {
-        getGardenVisits: _getGardenVisits,
+        getGardenVisitsShortList: _getGardenVisitsShortList,
         addVisit:_addVisit,
         schema: _visitSchema,
         model: _model
