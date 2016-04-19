@@ -35,9 +35,9 @@ public class GardenServiceRestController {
 				mapper = OrikaConfig.getMapperFacade();
 			}
 			
-			@RequestMapping(value = "/{clientId}", method = RequestMethod.POST)
+			@RequestMapping(params = {"clientId"}, method = RequestMethod.POST)
 		    public GardenDTO addGarden(@RequestHeader("GView-Context") String gviewContext, 
-					  				   @PathVariable String clientId,
+		    						   @RequestParam String clientId,
 					  				   @RequestBody  GardenDTO gardenDTO)   {
 		        try {
 		        	Garden garden = Garden.getBuilder().build();
@@ -90,9 +90,9 @@ public class GardenServiceRestController {
 		      
 		    }
 			
-			@RequestMapping(value = "/{clientId}",method=RequestMethod.GET)
+			@RequestMapping(params = {"clientId"},method=RequestMethod.GET)
 		    public List<GardenDTO> getGardenClients(@RequestHeader("GView-Context") String gviewContext, 
-	 				  								@PathVariable String clientId) {
+		    										@RequestParam(value = "clientId")  String clientId) {
 		       
 				try {
 					String gardenCenterId = ContextBuilder.getGardenCenterId(gviewContext);

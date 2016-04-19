@@ -25,11 +25,13 @@ var visitRepository = function() {
 
     var _getGardenVisitsShortList = function(gardenId) {
         var deferred = Q.defer();
-        winston.info('_getGardenVisits access');
+        winston.info('visitRepository._getGardenVisitsShortList access');
         _model.find({'gardenId':gardenId},function(err,docs) {
             if(err) {
                deferred.reject(err);
             }
+            winston.info('visitRepository._getGardenVisitsShortList return:');
+            winston.info(docs.length);
            deferred.resolve (docs) 
         }).limit(10);
         return deferred.promise;

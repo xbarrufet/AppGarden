@@ -7,38 +7,38 @@ var visitService = function() {
     
     var _getGardenVisitsShortList = function(gardenId) {
         var deferred = Q.defer();
-        winston.info('_getGardenVisitsShortList service access');
+        winston.info('visitService.getGardenVisitsShortList access');
         visitRepository.getGardenVisitsShortList(gardenId)
             .then(function (data) {
+                winston.info('visitService.getGardenVisitsShortList return');
                deferred.resolve(data)
              })
             .fail(function error(err) {
                 console.error(err);
                 deferred.reject(err);
-                
         });
         return deferred.promise;
     };
     
     var _addVisit = function(visit) {
-         winston.info('new visit');
-         var deferred = Q.defer();              
-        _model.create(visit,
-            function (err, vVisit) {
-            if (err)
-              deferred.reject(err)
-             // get and return the element
-            deferred.resolve (vVisit) 
-        });
+        winston.info('visitService.addVisit access');
+        var deferred = Q.defer();
+        visitRepository.addVisit(visit)
+            .then(function (data) {
+                winston.info('visitService.addVisit return');
+                deferred.resolve(data)
+            })
+            .fail(function error(err) {
+                    console.error(err);
+                    deferred.reject(err);
+             });
         return deferred.promise;
     };
 
     return {
-        getGardenVisits: _getGardenVisits,
-        addVisit:_addVisit,
-        schema: _visitSchema,
-        model: _model
+        getGardenVisitsShortList: _getGardenVisitsShortList,
+        addVisit:_addVisit
     }
 }();
 
-module.exports = visitRepository;
+module.exports = visitService;

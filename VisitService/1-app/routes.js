@@ -1,6 +1,8 @@
 // ROUTES FOR OUR API
 // =============================================================================
 var express    = require('express');
+var winston    = require('winston');
+var visitService    = require("../2-service/visitService");
 
 
 
@@ -18,22 +20,15 @@ router.get('/', function(req, res) {
 });
 
 // visit routes ==================================================================
-router.route('/visit')
+router.route('/visit/garden/:gardenId')
     .get(function(req, res) {
-       res.send("hola que tal")
+        visitService.getGardenVisitsShortList(req.params.gardenId)
+            .then(function(docs) {
+                res.send(docs);
+            }).fail(function(err) {
+                res.status(500).send(err);
+            })
     })
-    .post(function(req,res) {
-        res.send("hola que tal")
-    });
-
-router.route('/visit/:visitId')
-    .get(function(req,res) {
-        res.send("hola que tal id")
-    })
-    .put(function(req,res) {
-        res.send("hola que tal")
-    });
-
 
 
 module.exports=router;

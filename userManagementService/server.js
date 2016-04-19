@@ -44,4 +44,4 @@ if ('test' == env) {
 // START THE SERVER
 // ==============================================
 app.listen(port);
-logger.log('Magic happens on port ' + port);
+console.log('Magic happens on port ' + port);

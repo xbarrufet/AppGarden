@@ -6,20 +6,11 @@ var userRepository = function() {
     var mongoose = require('mongoose');
     var Schema = require('mongoose').Schema;
 
-    var TYPE_CLIENT="CLIENT";
-    var TYPE_GARDEN="GARDEN";
 
     var _userSchema = new Schema({
-        name: String,
-        email: { type : String , unique : true, required : true, dropDups: true },
-        password:{ type : String, required: true},
-        admin: { type : Boolean, default: false},
-        type:{ type:  String , default : TYPE_GARDEN },
-        audit: {
-            dateCreated:Date,
-            dateUpdated:Date
-        }
-
+        username: String,
+        password: String,
+        admin: Boolean
     });
 
     var _model = mongoose.model('Users', _userSchema);
@@ -37,10 +28,10 @@ var userRepository = function() {
         return deferred.promise;
     };
 
-    var _validate = function(email,password) {
+    var _validate = function(username,password) {
         var deferred = Q.defer();
-        winston.info("userRepository._validate " + email + "," + password);
-        _model.findOne({email:email},function(err,user) {
+        winston.info("userRepository._validate " + username + "," + password);
+        _model.findOne({username:username},function(err,user) {
             if(err) {
                 deferred.reject(err);
             }
@@ -56,18 +47,12 @@ var userRepository = function() {
     };
     
 
-    var _addUser = function(newUser) {
+    var _addUser = function(username,password,admin) {
         var deferred = Q.defer();
         var user =({
-            name: newUser.name,
-            email: newUser.email,
-            password: newUser.password,
-            admin: newUser.admin,
-            type:newUser.type,
-            audit:{
-                dateCreated:new Date(),
-                dateUpdatede:new Date()
-            }
+            username: username,
+            password: password,
+            admin: admin
         });
         _model.create(user,
             function (err, vUser) {
@@ -84,9 +69,7 @@ var userRepository = function() {
         addUser:_addUser,
         validate: _validate,
         schema: _userSchema,
-        model: _model,
-        TYPE_CLIENT:TYPE_CLIENT,
-        TYPE_GARDEN:TYPE_GARDEN
+        model: _model
     }
 }();
 

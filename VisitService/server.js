@@ -31,7 +31,7 @@ app.use(function(err, req, res, next) {
 //Connect to DB
 var env = process.env.NODE_ENV || 'development';
 if ('development' == env) {
-    mongoose.connect('mongodb://127.0.0.1/test_visits', function onMongooseError(err) {
+    mongoose.connect('mongodb://127.0.0.1/visits', function onMongooseError(err) {
         if(err)
             winston.error("Error connecting to DEV DB " + err);
     });
@@ -39,9 +39,10 @@ if ('development' == env) {
 
 if ('test' == env) {
     console.log('test env connection mongo');
-    mongoose.connect('mongodb://127.0.0.1/visits', function onMongooseError(err) {
+    mongoose.connect('mongodb://127.0.0.1/test_visits', function onMongooseError(err) {
        if(err)
             winston.error("Error connecting to test DB " + err);
+        
     });
 }
 

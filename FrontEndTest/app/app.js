@@ -28,6 +28,14 @@ app.config(['$routeProvider',
               templateUrl: 'templates/clientEdit_view.html',
               controller: 'clientEditController'
             }).
+       when('/garden, {
+                templateUrl: 'templates/garden_view.html',
+                controller: 'gardenController'
+             }).
+       when('/garden/:gardenId', {
+                     templateUrl: 'templates/gardenEdit_view.html',
+                     controller: 'gardenEditController'
+                  }).
       otherwise({
         redirectTo: '/gardenCenter'
       });
