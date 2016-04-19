@@ -2,21 +2,23 @@
  * Created by xavierbarrufet on 19/4/16.
  */
 
-var winston = require('winston');
+var logger = require('../2-service/logger');
 var Q = require('Q');
-var repository = require("../3-repository/userRepository");
+var userRepository = require("../3-repository/userRepository");
+var profileRepository = require("../3-repository/profileRepository");
 
 var userService = function() {
 
     var _getUsers = function() {
         var deferred = Q.defer();
-        winston.info("userService._getUsers");
-        repository.getAllUsers()
+        logger.debug("userService._getUsers");
+        userRepository.getAllUsers()
             .then(function (users) {
-                winston.info("userService._getAllUsers:results " + users.length);
+                logger.debug("userService._getAllUsers:number of users " + users.length);
                 deferred.resolve(users);
             })
             .fail(function (err) {
+                logger.debug("userService._getAllUsers:error " + err);
                 deferred.reject(err);
             })
         return deferred.promise;
@@ -24,9 +26,24 @@ var userService = function() {
 
     var _addUser = function(user) {
         var deferred = Q.defer();
-        repository.addUser(user.name, user.password, user.admin)
+        userRepository.addUser(user)
             .then(function (user) {
-                deferred.resolve(user);
+                profileRepository.createProfile(user.email)
+                    .then(function() {
+                        deferred.resolve(user);
+                    })
+                    .fail(function(err) {
+                        userRepository.deleteUser(user.email)
+                            .then(function(user) {
+                                deferred.rejected("User not created:" + err);
+                            })
+                            .fail(function(user) {
+                                deferred.rejected("User not created, profile created" + err);
+                            })
+
+
+                    })
+
             })
             .fail(function (err) {
                 deferred.reject(err);

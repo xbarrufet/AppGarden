@@ -37,6 +37,17 @@ var userRepository = function() {
         return deferred.promise;
     };
 
+    var _getUser = function(email) {
+        var deferred = Q.defer();
+        _model.find({email:email},function(err,docs) {
+            if(err) {
+                deferred.reject(err);
+            }
+            deferred.resolve (docs)
+        });
+        return deferred.promise;
+    };
+
     var _validate = function(email,password) {
         var deferred = Q.defer();
         winston.info("userRepository._validate " + email + "," + password);
@@ -79,8 +90,23 @@ var userRepository = function() {
         return deferred.promise;
     };
 
+    var _deleteUser =function(email) {
+        var deferred = Q.defer();
+        _getUser(email)
+            .then(function (user) {
+                user.delete();
+                deferred.resolve (email);
+            })
+            .fail(function(err) {
+                deferred.reject(err);
+            })
+        return deferred.promise;
+    };
+
     return {
         getAllUsers: _getAllUsers,
+        deleteUser:_deleteUser,
+        getUser: _getUser,
         addUser:_addUser,
         validate: _validate,
         schema: _userSchema,

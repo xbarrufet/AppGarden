@@ -2,39 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ff50249-aab0-4c69-a7fd-b1df00415f7f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ConversationService/.idea/ConversationService.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ConversationService/.idea/jsLibraryMappings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ConversationService/.idea/libraries/ConversationService_node_modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ConversationService/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ConversationService/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ConversationService/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../VisitService/9-test/sampleData.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gAppGateway/.idea/gAppGateway.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gAppGateway/.idea/jsLibraryMappings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gAppGateway/.idea/libraries/gAppGateway_node_modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gAppGateway/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gAppGateway/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gAppGateway/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gAppGateway/1-app/routes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gAppGateway/1-app/serviceDispatch.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gAppGateway/2-service/URLService.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gAppGateway/2-service/logger.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gAppGateway/2-service/userService.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gAppGateway/3-repository/userRepository.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../gAppGateway/server.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/3-repository/profileRepository.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ClientService/src/main/java/gview/clientservice/api/GardenServiceRestController.java" afterPath="$PROJECT_DIR$/../ClientService/src/main/java/gview/clientservice/api/GardenServiceRestController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FrontEndTest/app/app.js" afterPath="$PROJECT_DIR$/../FrontEndTest/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FrontEndTest/index.html" afterPath="$PROJECT_DIR$/../FrontEndTest/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../VisitService/1-app/routes.js" afterPath="$PROJECT_DIR$/../VisitService/1-app/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../VisitService/2-service/visitService.js" afterPath="$PROJECT_DIR$/../VisitService/2-service/visitService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../VisitService/3-repository/visitRepository.js" afterPath="$PROJECT_DIR$/../VisitService/3-repository/visitRepository.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../VisitService/server.js" afterPath="$PROJECT_DIR$/../VisitService/server.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/1-app/routes.js" afterPath="$PROJECT_DIR$/1-app/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2-service/userService.js" afterPath="$PROJECT_DIR$/2-service/userService.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/3-repository/userRepository.js" afterPath="$PROJECT_DIR$/3-repository/userRepository.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
     </list>
     <ignored path="userManagementService.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,18 +38,28 @@
       <file leaf-file-name="userRepository.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/3-repository/userRepository.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="930">
-              <caret line="62" column="32" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="32" />
+            <state relative-caret-position="1429">
+              <caret line="103" column="5" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profileRepository.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="profileRepository.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/3-repository/profileRepository.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
+            <state relative-caret-position="1185">
               <caret line="103" column="8" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userService.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/2-service/userService.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -126,8 +106,9 @@
         <option value="$PROJECT_DIR$/2-service/logger.js" />
         <option value="$PROJECT_DIR$/1-app/routes.js" />
         <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/3-repository/userRepository.js" />
         <option value="$PROJECT_DIR$/3-repository/profileRepository.js" />
+        <option value="$PROJECT_DIR$/3-repository/userRepository.js" />
+        <option value="$PROJECT_DIR$/2-service/userService.js" />
       </list>
     </option>
   </component>
@@ -303,7 +284,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1461041968400</updated>
-      <workItem from="1461041969695" duration="3623000" />
+      <workItem from="1461041969695" duration="4493000" />
     </task>
     <task id="LOCAL-00001" summary="initial&#10;">
       <created>1461042504891</created>
@@ -312,11 +293,18 @@
       <option name="project" value="LOCAL" />
       <updated>1461042504891</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="initial&#10;">
+      <created>1461047232737</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1461047232737</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3623000" />
+    <option name="totallyTimeSpent" value="4493000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="20" y="30" width="1260" height="686" extended-state="0" />
@@ -384,18 +372,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/3-repository/userRepository.js">
+    <entry file="file://$PROJECT_DIR$/3-repository/profileRepository.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="62" column="32" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="32" />
+        <state relative-caret-position="1185">
+          <caret line="103" column="8" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/3-repository/profileRepository.js">
+    <entry file="file://$PROJECT_DIR$/3-repository/userRepository.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="103" column="8" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="8" />
+        <state relative-caret-position="1429">
+          <caret line="103" column="5" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2-service/userService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
           <folding />
         </state>
       </provider>
