@@ -1,7 +1,7 @@
 /**
  * Created by xavierbarrufet on 18/4/16.
  */
-var winston=require("winston")
+var winston=require("winston");
 
 var log = new (winston.Logger)({
     transports: [
@@ -10,29 +10,31 @@ var log = new (winston.Logger)({
     ]
 });
 
-function metadata() {
+function metadata(module,funcName) {
     var res ={};
     res.service="userManagementService";
     res.timestamp = new Date();
+    res.module=module;
+    res.funcName=funcName;
     return res;
 }
 
 var logger = function() {
 
-    var _info=function(msg) {
-        log.info('info',msg,metadata());
-    }
-    var _debug=function(msg) {
-        log.debug('debug',msg,metadata());
-    }
-    var _error=function(msg) {
-        log.error('error',msg,metadata());
-    }
+    var _info=function(msg,module,funcName) {
+        log.info('info',msg,metadata(module,funcName));
+    };
+    var _debug=function(msg,module,funcName) {
+        log.debug('debug',msg,metadata(module,funcName));
+    };
+    var _error=function(msg,module,funcName) {
+        log.error('error',msg,metadata(module,funcName));
+    };
 
     return {
         info: _info,
         debug: _debug,
-        error: _error,
+        error: _error
     }
 }();
 

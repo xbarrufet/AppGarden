@@ -8,7 +8,7 @@ var profileRepository = function() {
 
 
     var _profileSchema = new Schema({
-        email: { type : String , unique : true, required : true, dropDups: true },
+        userId: { type : String , unique : true, required : true, dropDups: true },
         gardenCenter:[String],
         garden:[String],
         audit: {
@@ -20,90 +20,152 @@ var profileRepository = function() {
 
     var _model = mongoose.model('Profile', _profileSchema);
 
-    var _getProfile=function(email) {
-        var deferred = Q.defer();
-        _model.findOne({email:email},function(err,doc) {
-            if(err)
-                deferred.reject(err)
-            deferred.resolve(doc)
+    var _getProfile=function(userId,callback) {
+        logger.info("start userid="+ userId ,"profileRepository","_getProfile");
+        _model.findOne({userId:userId},function(err,profile) {
+            if (err) {
+                logger.error(err, "userRepository", "_validate");
+                callback(err, null);
+                return;
+            }
+            if (!profile) {
+                logger.error("Profile for " + userId + " not found.", "profileRepository", "_getProfile");
+                callback("Profile for " + userId + " not found.", null);
+                return;
+            }
+            callback(null,profile);
+
         })
-        return deferred.promise;
+        return;
     }
 
-    var _addGarden= function(email,garden) {
-        var deferred = Q.defer();
-        _getProfile(email)
-            .then(function(profile) {
-                if(profile.garden.indexOf(garden)==-1) {
-                    profle.garden.push(garden);
-                    profile.save(function (err) {
-                        if(err)
-                            deferred.reject(err);
-                        deferred.resolve(profile);
-                    });
-                } else {
-                    deferred.resolve(profile);
+    var _updateAllGardens= function(userId,gardens,callback) {
+        logger.info("start userid=" + userId, "profileRepository", "_updateAllGardens");
+        _getProfile(userId, function (err, profile) {
+            if (err) {
+                logger.error(err, "profileRepository", "_updateAllGardens");
+                callback(err, null);
+                return;
+            }
+            profile.garden = gardens;
+            profile.save(function (err) {
+                if (err) {
+                    logger.error(err, "profileRepository", "_updateAllGardens");
+                    callback(err, null);
+                    return;
                 }
+                callback(null, profile);
             })
-            .fail(function(err) {
-                deferred.reject(err);
+        })
+        return;
+    }
+
+    var _updateAllGardenCenters= function(userId,gardenCenters,callback) {
+        logger.info("start userid=" + userId, "profileRepository", "_updateAllGardenCenters");
+        _getProfile(userId, function (err, profile) {
+            if (err) {
+                logger.error(err, "profileRepository", "_updateAllGardenCenters");
+                callback(err, null);
+                return;
+            }
+            profile.gardenCenter = gardenCenters;
+            profile.save(function (err) {
+                if (err) {
+                    logger.error(err, "profileRepository", "_updateAllGardenCenters");
+                    callback(err, null);
+                    return;
+                }
+                callback(null, profile);
+
             })
-        return deferred.promise;
+        })
+        return;
+    }
+
+    var _addGarden= function(userId,garden) {
+        logger.info("start userid=" + userId, "profileRepository", "_addGarden");
+        _getProfile(userId, function (err, profile) {
+            if (err) {
+                logger.error(err, "profileRepository", "_addGarden");
+                callback(err, null);
+                return;
+            }
+            if (profile.garden.indexOf(garden) == -1) {
+                profile.garden.push(garden);
+                profile.save(function (err) {
+                    if (err) {
+                        logger.error(err, "profileRepository", "_addGarden");
+                        callback(err, null);
+                        return;
+                    }
+                    callback(null, profile);
+                });
+            } else {
+                callback(null, profile);
+            }
+        });
+        return;
+    }
+
+    var _addGardenCenter = function(userId,gardenCenter,callback) {
+        logger.info("start userid=" + userId, "profileRepository", "_addGardenCenter");
+        _getProfile(userId, function (err, profile) {
+            if (err) {
+                logger.error(err, "profileRepository", "_addGardenCenter");
+                callback(err, null);
+                return;
+            }
+            if (profile.gardenCenter.indexOf(gardenCenter) == -1) {
+                profile.gardenCenter.push(gardenCenter);
+                profile.save(function (err) {
+                    if (err) {
+                        logger.error(err, "profileRepository", "_addGardenCenter");
+                        callback(err, null);
+                        return;
+                    }
+                    callback(null, profile);
+                });
+            } else {
+                callback(null, profile);
+            }
+        })
+        return;
     };
 
-    var _addGardenCenter = function(email,gardenCenter) {
-        var deferred = Q.defer();
-        _getProfile(email)
-            .then(function(profile) {
-                if(profile.gardenCenter.indexOf(gardenCenter)==-1) {
-                    profle.gardenCenter.push(gardenCenter);
-                    profile.save(function (err) {
-                        if(err)
-                            deferred.reject(err);
-                        deferred.resolve(profile);
-                    });
-                } else {
-                    deferred.resolve(profile);
-                }
-            })
-            .fail(function(err) {
-                deferred.reject(err);
-            })
-        return deferred.promise;
-    };
 
 
-
-    var _createProfile = function(email) {
-        var deferred = Q.defer();
+    var _createProfile = function(userId,callback) {
+        logger.info("start userid=" + userId, "profileRepository", "_createProfile");
         var profile =({
-            email: email,
+            userId: userId,
             audit:{
                 dateCreated:new Date(),
                 dateUpdatede:new Date()
             }
         });
-        _model.create(profile,
-            function (err, vProfile) {
-                if (err)
-                    deferred.reject(err);
-                // get and return the element
-                deferred.resolve (vProfile);
+        _model.create(profile, function (err, vProfile) {
+                if (err) {
+                    logger.error(err, "profileRepository", "_addGardenCenter");
+                    callback(err, null);
+                    return;
+                }
+                callback(null, vProfile);
             });
-        return deferred.promise;
-    };
+        return;
+    }
+
 
     return {
         getProfile: _getProfile,
+        updateAllGardens:_updateAllGardens,
+        updateAllGardenCenters:_updateAllGardenCenters,
         createProfile:_createProfile,
         addGardenCenter:_addGardenCenter,
         addGarden:_addGarden,
-        
+
         schema: _profileSchema,
-        model: _model,
-        TYPE_CLIENT:TYPE_CLIENT,
-        TYPE_GARDEN:TYPE_GARDEN
+        model: _model
     }
 }();
 
-module.exports = userRepository;
+module.exports = profileRepository;

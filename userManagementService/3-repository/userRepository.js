@@ -1,5 +1,5 @@
-var winston = require('winston');
-var Q = require('Q');
+var logger = require('../2-service/logger');
+
 
 var userRepository = function() {
 
@@ -24,51 +24,72 @@ var userRepository = function() {
 
     var _model = mongoose.model('Users', _userSchema);
 
-    var _getAllUsers = function() {
-        var deferred = Q.defer();
-        winston.info("userRepository._getAllUsers");
+    var _getAllUsers = function(callback) {
+        logger.info("start","userRepository","_getAllUsers");
         _model.find({},function(err,docs) {
-            winston.info("userRepository._getAllUsers:results " + docs.length);
             if(err) {
-               deferred.reject(err);
+                logger.error(err,"userRepository","_getAllUsers");
+               callback(err,null);
+                return;
             }
-           deferred.resolve (docs) 
+            callback(null,docs)
         });
-        return deferred.promise;
+        return;
     };
 
-    var _getUser = function(email) {
-        var deferred = Q.defer();
-        _model.find({email:email},function(err,docs) {
+    var _getUserById = function(userId,callback) {
+        logger.info("start userid="+ userId ,"userRepository","_getUserById");
+        _model.findById(userId,function(err,docs) {
             if(err) {
-                deferred.reject(err);
+                logger.error(err,"userRepository","_getUserById");
+                callback(err,null);
+                return;
             }
-            deferred.resolve (docs)
+            callback(null,docs)
         });
-        return deferred.promise;
+        return;
     };
 
-    var _validate = function(email,password) {
-        var deferred = Q.defer();
-        winston.info("userRepository._validate " + email + "," + password);
+    var _getUserByEmail = function(email,callback) {
+        logger.info("start email="+ email ,"userRepository","_getUserByEmail");
+        _model.findOne({email: email}, function (err, user) {
+            if(err) {
+                logger.error(err,"userRepository","_getUserByEmail");
+                callback(err,null);
+                return;
+            }
+            callback(null,user)
+        });
+        return;
+    };
+
+    var _validate = function(email,password,callback) {
+        logger.info("start email="+ email ,"userRepository","_getUserByEmail");
         _model.findOne({email:email},function(err,user) {
-            if(err) {
-                deferred.reject(err);
+            if (err) {
+                logger.error(err, "userRepository", "_validate");
+                callback(err, null);
+                return;
             }
-            if(!user)
-                deferred.reject("Authentication failed. User not found.");
-            else {
-                if (user.password != password)
-                    deferred.reject("Authentication failed. Wrong pasword.");
+            if (!user) {
+                logger.info("Authentication failed. User not found.", "userRepository", "_validate");
+                callback("Authentication failed. User not found.", null);
+                return;
+            } else {
+                if (user.password != password) {
+                    logger.info("Authentication failed. Wrong pasword.", "userRepository", "_validate");
+                    callback("Authentication failed. Wrong pasword.", null);
+                    return;
+                }
             }
-            deferred.resolve (user);
+            callback(null,user);
         });
-        return deferred.promise;
+        return;
     };
     
 
-    var _addUser = function(newUser) {
-        var deferred = Q.defer();
+    var _addUser = function(newUser,callback) {
+        logger.info("start","userRepository","_addUser");
         var user =({
             name: newUser.name,
             email: newUser.email,
@@ -82,33 +103,38 @@ var userRepository = function() {
         });
         _model.create(user,
             function (err, vUser) {
-                if (err)
-                    deferred.reject(err);
-                // get and return the element
-                deferred.resolve (vUser);
+                if(err) {
+                    logger.error(err,"userRepository","_addUser");
+                    callback(err,null);
+                    return;
+                }
+                callback(null,vUser)
             });
-        return deferred.promise;
+        return;
     };
 
-    var _deleteUser =function(email) {
-        var deferred = Q.defer();
-        _getUser(email)
-            .then(function (user) {
-                user.delete();
-                deferred.resolve (email);
-            })
-            .fail(function(err) {
-                deferred.reject(err);
-            })
-        return deferred.promise;
+    var _deleteUser =function(userId,callback) {
+        logger.info("start userId=" + email,"userRepository","_deleteUser");
+        _model.findOneAndRemove(userId, function(err){
+                if(err) {
+                    logger.error(err,"userRepository","_deleteUser");
+                    callback(err,null);
+                    return;
+                }
+                callback(null,vUser)
+        });
+        return;
     };
+
 
     return {
         getAllUsers: _getAllUsers,
+        getUserById:_getUserById,
+        getUserByEmail:_getUserByEmail,
         deleteUser:_deleteUser,
-        getUser: _getUser,
         addUser:_addUser,
         validate: _validate,
+
         schema: _userSchema,
         model: _model,
         TYPE_CLIENT:TYPE_CLIENT,

@@ -2,7 +2,7 @@
 // =============================================================================
 var express    = require('express');
 var logger    = require('../2-service/logger');
-
+var userService    = require('../2-service/userService');
 
 var router = express.Router(); 				// get an instance of the express Router
 
@@ -17,14 +17,34 @@ router.get('/', function(req, res) {
 });
 
 // visit routes ==================================================================
-router.route('/visit/garden/:gardenId')
-    .get(function(req, res) {
-        visitService.getGardenVisitsShortList(req.params.gardenId)
+router.route('/user')
+    .post(function(req, res) {
+        userService.addUser(req.body.user)
             .then(function(docs) {
                 res.send(docs);
             }).fail(function(err) {
                 res.status(500).send(err);
             })
+    })
+
+router.route('/user/validate')
+    .get(function(req, res) {
+        userService.validate(req.body.email,req.body.password)
+            .then(function(docs) {
+                res.send(docs);
+            }).fail(function(err) {
+            res.status(500).send(err);
+        })
+    })
+
+router.route('/user')
+    .post(function(req, res) {
+        userService.validate(req.body.email,req.body.password)
+            .then(function(docs) {
+                res.send(docs);
+            }).fail(function(err) {
+            res.status(500).send(err);
+        })
     })
 
 
